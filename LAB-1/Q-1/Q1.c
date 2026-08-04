@@ -37,7 +37,7 @@ far beyond any n you'd ever compute with in practice.*/
 #include <math.h>
 
 int main() {
-    double n = 100;   // try changing this and re-running
+    double n = 10000;   // try changing this and re-running
 
     double log2n = log2(n);   // log base 2 of n, used a few times below
 
