@@ -1,0 +1,200 @@
+
+================ n = 5000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search              5000          12        5000        5000        5000        5000
+Insert                 1        5001           1        5000           1        5000
+Delete                 1        5000        5000        5000           1           1
+Minimum             4999           1        5000           1        5000           1
+Maximum             4999           1        5000        4999        5000        4999
+Predecessor         5000           1        5000        2500        5000           1
+Successor           5000           1        5000           1        5000           1
+
+================ n = 10000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             10000          13       10000       10000       10000       10000
+Insert                 1       10001           1       10000           1       10000
+Delete                 1       10000       10000       10000           1           1
+Minimum             9999           1       10000           1       10000           1
+Maximum             9999           1       10000        9999       10000        9999
+Predecessor        10000           1       10000        5000       10000           1
+Successor          10000           1       10000           1       10000           1
+
+================ n = 15000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             15000          13       15000       15000       15000       15000
+Insert                 1       15001           1       15000           1       15000
+Delete                 1       15000       15000       15000           1           1
+Minimum            14999           1       15000           1       15000           1
+Maximum            14999           1       15000       14999       15000       14999
+Predecessor        15000           1       15000        7500       15000           1
+Successor          15000           1       15000           1       15000           1
+
+================ n = 20000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             20000          14       20000       20000       20000       20000
+Insert                 1       20001           1       20000           1       20000
+Delete                 1       20000       20000       20000           1           1
+Minimum            19999           1       20000           1       20000           1
+Maximum            19999           1       20000       19999       20000       19999
+Predecessor        20000           1       20000       10000       20000           1
+Successor          20000           1       20000           1       20000           1
+
+================ n = 25000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             25000          14       25000       25000       25000       25000
+Insert                 1       25001           1       25000           1       25000
+Delete                 1       25000       25000       25000           1           1
+Minimum            24999           1       25000           1       25000           1
+Maximum            24999           1       25000       24999       25000       24999
+Predecessor        25000           1       25000       12500       25000           1
+Successor          25000           1       25000           1       25000           1
+
+================ n = 30000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             30000          14       30000       30000       30000       30000
+Insert                 1       30001           1       30000           1       30000
+Delete                 1       30000       30000       30000           1           1
+Minimum            29999           1       30000           1       30000           1
+Maximum            29999           1       30000       29999       30000       29999
+Predecessor        30000           1       30000       15000       30000           1
+Successor          30000           1       30000           1       30000           1
+
+================ n = 35000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             35000          15       35000       35000       35000       35000
+Insert                 1       35001           1       35000           1       35000
+Delete                 1       35000       35000       35000           1           1
+Minimum            34999           1       35000           1       35000           1
+Maximum            34999           1       35000       34999       35000       34999
+Predecessor        35000           1       35000       17500       35000           1
+Successor          35000           1       35000           1       35000           1
+
+================ n = 40000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             40000          15       40000       40000       40000       40000
+Insert                 1       40001           1       40000           1       40000
+Delete                 1       40000       40000       40000           1           1
+Minimum            39999           1       40000           1       40000           1
+Maximum            39999           1       40000       39999       40000       39999
+Predecessor        40000           1       40000       20000       40000           1
+Successor          40000           1       40000           1       40000           1
+
+================ n = 45000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             45000          15       45000       45000       45000       45000
+Insert                 1       45001           1       45000           1       45000
+Delete                 1       45000       45000       45000           1           1
+Minimum            44999           1       45000           1       45000           1
+Maximum            44999           1       45000       44999       45000       44999
+Predecessor        45000           1       45000       22500       45000           1
+Successor          45000           1       45000           1       45000           1
+
+================ n = 50000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             50000          15       50000       50000       50000       50000
+Insert                 1       50001           1       50000           1       50000
+Delete                 1       50000       50000       50000           1           1
+Minimum            49999           1       50000           1       50000           1
+Maximum            49999           1       50000       49999       50000       49999
+Predecessor        50000           1       50000       25000       50000           1
+Successor          50000           1       50000           1       50000           1
+
+================ n = 55000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             55000          15       55000       55000       55000       55000
+Insert                 1       55001           1       55000           1       55000
+Delete                 1       55000       55000       55000           1           1
+Minimum            54999           1       55000           1       55000           1
+Maximum            54999           1       55000       54999       55000       54999
+Predecessor        55000           1       55000       27500       55000           1
+Successor          55000           1       55000           1       55000           1
+
+================ n = 60000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             60000          15       60000       60000       60000       60000
+Insert                 1       60001           1       60000           1       60000
+Delete                 1       60000       60000       60000           1           1
+Minimum            59999           1       60000           1       60000           1
+Maximum            59999           1       60000       59999       60000       59999
+Predecessor        60000           1       60000       30000       60000           1
+Successor          60000           1       60000           1       60000           1
+
+================ n = 65000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             65000          15       65000       65000       65000       65000
+Insert                 1       65001           1       65000           1       65000
+Delete                 1       65000       65000       65000           1           1
+Minimum            64999           1       65000           1       65000           1
+Maximum            64999           1       65000       64999       65000       64999
+Predecessor        65000           1       65000       32500       65000           1
+Successor          65000           1       65000           1       65000           1
+
+================ n = 70000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             70000          16       70000       70000       70000       70000
+Insert                 1       70001           1       70000           1       70000
+Delete                 1       70000       70000       70000           1           1
+Minimum            69999           1       70000           1       70000           1
+Maximum            69999           1       70000       69999       70000       69999
+Predecessor        70000           1       70000       35000       70000           1
+Successor          70000           1       70000           1       70000           1
+
+================ n = 75000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             75000          16       75000       75000       75000       75000
+Insert                 1       75001           1       75000           1       75000
+Delete                 1       75000       75000       75000           1           1
+Minimum            74999           1       75000           1       75000           1
+Maximum            74999           1       75000       74999       75000       74999
+Predecessor        75000           1       75000       37500       75000           1
+Successor          75000           1       75000           1       75000           1
+
+================ n = 80000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             80000          16       80000       80000       80000       80000
+Insert                 1       80001           1       80000           1       80000
+Delete                 1       80000       80000       80000           1           1
+Minimum            79999           1       80000           1       80000           1
+Maximum            79999           1       80000       79999       80000       79999
+Predecessor        80000           1       80000       40000       80000           1
+Successor          80000           1       80000           1       80000           1
+
+================ n = 85000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             85000          16       85000       85000       85000       85000
+Insert                 1       85001           1       85000           1       85000
+Delete                 1       85000       85000       85000           1           1
+Minimum            84999           1       85000           1       85000           1
+Maximum            84999           1       85000       84999       85000       84999
+Predecessor        85000           1       85000       42500       85000           1
+Successor          85000           1       85000           1       85000           1
+
+================ n = 90000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             90000          16       90000       90000       90000       90000
+Insert                 1       90001           1       90000           1       90000
+Delete                 1       90000       90000       90000           1           1
+Minimum            89999           1       90000           1       90000           1
+Maximum            89999           1       90000       89999       90000       89999
+Predecessor        90000           1       90000       45000       90000           1
+Successor          90000           1       90000           1       90000           1
+
+================ n = 95000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search             95000          16       95000       95000       95000       95000
+Insert                 1       95001           1       95000           1       95000
+Delete                 1       95000       95000       95000           1           1
+Minimum            94999           1       95000           1       95000           1
+Maximum            94999           1       95000       94999       95000       94999
+Predecessor        95000           1       95000       47500       95000           1
+Successor          95000           1       95000           1       95000           1
+
+================ n = 100000 ================
+Operation      UnsortArr     SortArr  SglyUnsort    SglySort  DblyUnsort    DblySort
+Search            100000          16      100000      100000      100000      100000
+Insert                 1      100001           1      100000           1      100000
+Delete                 1      100000      100000      100000           1           1
+Minimum            99999           1      100000           1      100000           1
+Maximum            99999           1      100000       99999      100000       99999
+Predecessor       100000           1      100000       50000      100000           1
+Successor         100000           1      100000           1      100000           1
