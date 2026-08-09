@@ -1,138 +1,173 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <string.h>
 #include <time.h>
-static long long comparisons; /* global comparison counter, reset before each sort */
-/* ---------------------------------------------------------------------
- * Standard 2-way merge sort
- * ------------------------------------------------------------------- */
-static void merge2(int *arr, int lo, int mid, int hi, int *tmp) {
-    int i = lo, j = mid, k = lo;
-    while (i < mid && j < hi) {
-        comparisons++;
-        if (arr[i] <= arr[j]) tmp[k++] = arr[i++];
-        else                  tmp[k++] = arr[j++];
+long long operations = 0;
+void merge(int a[], int left, int mid, int right)
+{
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    int *L = malloc(n1 * sizeof(int));
+    int *R = malloc(n2 * sizeof(int));
+    for (int i = 0; i < n1; i++)
+        L[i] = a[left + i];
+    for (int i = 0; i < n2; i++)
+        R[i] = a[mid + 1 + i];
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2)
+    {
+        operations++;
+        if (L[i] <= R[j])
+            a[k++] = L[i++];
+        else
+            a[k++] = R[j++];
     }
-    while (i < mid) tmp[k++] = arr[i++];
-    while (j < hi)  tmp[k++] = arr[j++];
-    memcpy(arr + lo, tmp + lo, (hi - lo) * sizeof(int));
+    while (i < n1)
+        a[k++] = L[i++];
+    while (j < n2)
+        a[k++] = R[j++];
+    free(L);
+    free(R);
 }
-
-static void mergeSort2(int *arr, int lo, int hi, int *tmp) {
-    if (hi - lo <= 1) return;
-    int mid = lo + (hi - lo) / 2;
-    mergeSort2(arr, lo, mid, tmp);
-    mergeSort2(arr, mid, hi, tmp);
-    merge2(arr, lo, mid, hi, tmp);
+void mergeSort(int a[], int left, int right)
+{
+    if (left < right)
+    {
+        int mid = left + (right - left) / 2;
+        mergeSort(a, left, mid);
+        mergeSort(a, mid + 1, right);
+        merge(a, left, mid, right);
+    }
 }
-/* ---------------------------------------------------------------------
- * Modified 3-way merge sort
- * ------------------------------------------------------------------- */
-/* 3-way merge of arr[lo..m1), arr[m1..m2), arr[m2..hi) into tmp, copied back */
-static void merge3(int *arr, int lo, int m1, int m2, int hi, int *tmp) {
-    int i = lo, j = m1, k = m2, t = lo;
-    while (i < m1 && j < m2 && k < hi) {
-        /* find minimum of arr[i], arr[j], arr[k] using pairwise comparisons */
-        comparisons++;
-        if (arr[i] <= arr[j]) {
-            comparisons++;
-            if (arr[i] <= arr[k]) tmp[t++] = arr[i++];
-            else                  tmp[t++] = arr[k++];
-        } else {
-            comparisons++;
-            if (arr[j] <= arr[k]) tmp[t++] = arr[j++];
-            else                  tmp[t++] = arr[k++];
+void threeWayMerge(int a[], int left, int mid1, int mid2, int right)
+{
+    int n1 = mid1 - left;
+    int n2 = mid2 - mid1;
+    int n3 = right - mid2;
+    int *A = malloc(n1 * sizeof(int));
+    int *B = malloc(n2 * sizeof(int));
+    int *C = malloc(n3 * sizeof(int));
+    for (int i = 0; i < n1; i++)
+        A[i] = a[left + i];
+    for (int i = 0; i < n2; i++)
+        B[i] = a[mid1 + i];
+    for (int i = 0; i < n3; i++)
+        C[i] = a[mid2 + i];
+    int i = 0, j = 0, k = 0;
+    int p = left;
+    while (i < n1 || j < n2 || k < n3)
+    {
+        if (i < n1 && j < n2 && k < n3)
+        {
+            operations += 2;
+            if (A[i] <= B[j] && A[i] <= C[k])
+                a[p++] = A[i++];
+            else if (B[j] <= A[i] && B[j] <= C[k])
+                a[p++] = B[j++];
+            else
+                a[p++] = C[k++];
+        }
+        else if (i < n1 && j < n2)
+        {
+            operations++;
+            if (A[i] <= B[j])
+                a[p++] = A[i++];
+            else
+                a[p++] = B[j++];
+        }
+        else if (i < n1 && k < n3)
+        {
+            operations++;
+            if (A[i] <= C[k])
+                a[p++] = A[i++];
+            else
+                a[p++] = C[k++];
+        }
+        else if (j < n2 && k < n3)
+        {
+            operations++;
+            if (B[j] <= C[k])
+                a[p++] = B[j++];
+            else
+                a[p++] = C[k++];
+        }
+        else if (i < n1)
+        {
+            a[p++] = A[i++];
+        }
+        else if (j < n2)
+        {
+            a[p++] = B[j++];
+        }
+        else
+        {
+            a[p++] = C[k++];
         }
     }
-    /* at most one of the three segments remains; finish with 2-way merges */
-    while (i < m1 && j < m2) {
-        comparisons++;
-        if (arr[i] <= arr[j]) tmp[t++] = arr[i++];
-        else                  tmp[t++] = arr[j++];
-    }
-    while (j < m2 && k < hi) {
-        comparisons++;
-        if (arr[j] <= arr[k]) tmp[t++] = arr[j++];
-        else                  tmp[t++] = arr[k++];
-    }
-    while (i < m1 && k < hi) {
-        comparisons++;
-        if (arr[i] <= arr[k]) tmp[t++] = arr[i++];
-        else                  tmp[t++] = arr[k++];
-    }
-    while (i < m1) tmp[t++] = arr[i++];
-    while (j < m2) tmp[t++] = arr[j++];
-    while (k < hi) tmp[t++] = arr[k++];
-
-    memcpy(arr + lo, tmp + lo, (hi - lo) * sizeof(int));
+    free(A);
+    free(B);
+    free(C);
 }
-
-static void mergeSort3(int *arr, int lo, int hi, int *tmp) {
-    int n = hi - lo;
-    if (n <= 1) return;
-    int m1 = lo + n / 3;
-    int m2 = lo + 2 * n / 3;
-    mergeSort3(arr, lo, m1, tmp);
-    mergeSort3(arr, m1, m2, tmp);
-    mergeSort3(arr, m2, hi, tmp);
-    merge3(arr, lo, m1, m2, hi, tmp);
+void threeWayMergeSort(int a[], int left, int right)
+{
+    if (right - left <= 1)
+        return;
+    int third = (right - left) / 3;
+    int mid1 = left + third;
+    int mid2 = left + 2 * third;
+    if (third == 0)
+        mid1 = left + 1;
+    if (mid2 <= mid1)
+        mid2 = mid1 + 1;
+    if (mid2 > right)
+        mid2 = right;
+    threeWayMergeSort(a, left, mid1);
+    threeWayMergeSort(a, mid1, mid2);
+    threeWayMergeSort(a, mid2, right);
+    threeWayMerge(a, left, mid1, mid2, right);
 }
-
-/* ---------------------------------------------------------------------
- * Helpers
- * ------------------------------------------------------------------- */
-
-static void fillRandom(int *arr, int n, unsigned seed) {
-    srand(seed);
-    for (int i = 0; i < n; i++) arr[i] = rand();
-}
-
-int main(void) {
-    FILE *fp = fopen("results.csv", "w");
-    if (!fp) { perror("fopen"); return 1; }
-    fprintf(fp, "n,comparisons_2way,comparisons_3way,n_log2_n,n_log3_n\n");
-
-    int sizes[] = {100, 500, 1000, 2000, 4000, 8000, 16000, 32000,
-                    64000, 128000, 256000, 512000, 1000000};
-    int numSizes = sizeof(sizes) / sizeof(sizes[0]);
-
-    printf("%10s %18s %18s %18s\n", "n", "cmp (2-way)", "cmp (3-way)", "ratio 3way/2way");
-
-    for (int s = 0; s < numSizes; s++) {
-        int n = sizes[s];
-        int *arr = malloc(n * sizeof(int));
-        int *tmp = malloc(n * sizeof(int));
-
-        /* --- 2-way merge sort --- */
-        fillRandom(arr, n, 42);
-        comparisons = 0;
-        mergeSort2(arr, 0, n, tmp);
-        long long cmp2 = comparisons;
-
-        /* --- 3-way merge sort (same input) --- */
-        fillRandom(arr, n, 42);
-        comparisons = 0;
-        mergeSort3(arr, 0, n, tmp);
-        long long cmp3 = comparisons;
-
-        double nlog2n = n * (log((double)n) / log(2.0));
-        double nlog3n = n * (log((double)n) / log(3.0));
-
-        printf("%10d %18lld %18lld %18.3f\n", n, cmp2, cmp3, (double)cmp3 / cmp2);
-        fprintf(fp, "%d,%lld,%lld,%.3f,%.3f\n", n, cmp2, cmp3, nlog2n, nlog3n);
-
-        free(arr);
-        free(tmp);
+int main()
+{
+    FILE *csv = fopen("merge_sort_comparison.csv", "w");
+    if (csv == NULL)
+    {
+        printf("Error creating CSV file.\n");
+        return 1;
     }
-
-    fclose(fp);
-    printf("\nResults written to results.csv\n");
-    printf("\nTo plot with gnuplot, run e.g.:\n");
-    printf("  gnuplot -persist -e \"set datafile separator ','; set key top left; \\\n");
-    printf("    set xlabel 'n'; set ylabel 'comparisons'; \\\n");
-    printf("    plot 'results.csv' using 1:2 with linespoints title '2-way merge sort', \\\n");
-    printf("         'results.csv' using 1:3 with linespoints title '3-way merge sort'\"\n");
-
+    fprintf(csv, "n,Normal Merge Sort,Three-Way Merge Sort\n");
+    srand(time(NULL));
+    for (int n = 1000; n <= 10000; n += 1000)
+    {
+        int *a = malloc(n * sizeof(int));
+        int *b = malloc(n * sizeof(int));
+        if (a == NULL || b == NULL)
+        {
+            printf("Memory allocation failed.\n");
+            fclose(csv);
+            return 1;
+        }
+        for (int i = 0; i < n; i++)
+        {
+            a[i] = rand();
+            b[i] = a[i];
+        }
+        operations = 0;
+        mergeSort(a, 0, n - 1);
+        long long normal_operations = operations;
+        operations = 0;
+        threeWayMergeSort(b, 0, n);
+        long long three_way_operations = operations;
+        fprintf(csv, "%d,%lld,%lld\n",
+                n,
+                normal_operations,
+                three_way_operations);
+        printf("n = %d | Normal = %lld | Three-Way = %lld\n",
+               n,
+               normal_operations,
+               three_way_operations);
+        free(a);
+        free(b);
+    }
+    fclose(csv);
+    printf("\nCSV file created: merge_sort_comparison.csv\n");
     return 0;
 }
