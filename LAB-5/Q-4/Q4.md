@@ -1,0 +1,1 @@
+This repository contains all the solutions for the Design and Analysis of Algorithms (DAA) Lab (3rd Semester). Each problem includes a well-documented solution along with the algorithmic approach and explanation in its respective README file for easy understanding and reference.

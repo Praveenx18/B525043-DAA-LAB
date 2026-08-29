@@ -10,7 +10,7 @@
 //      current = 0
 //      maximum = 0
 // 6.Traverse the sorted events:
-//        If it is an entry, increase current.
+//      If it is an entry, increase current.
 //      If it is an exit, decrease current.
 // 7.Whenever current > maximum:
 //      Update maximum.
